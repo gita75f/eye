@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winchester Eye Care | Premier Vision & Cataract Surgery Guide</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pastelPurple: '#BDB2FF',
+                        pastelPink: '#FFD6E0',
+                        pastelLightPink: '#FFF0F3',
+                        pastelPurpleDark: '#8E7DBE',
+                        darkSlate: '#1E1B2E',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(189, 178, 255, 0.25)',
+                        'glass-hover': '0 14px 40px 0 rgba(189, 178, 255, 0.4)',
+                        'card-soft': '0 10px 30px -5px rgba(230, 200, 220, 0.5)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #FFD6E0 0%, #FFF0F3 50%, #E8E5FF 100%);
+            background-attachment: fixed;
+            color: #2D2B3A;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow: 0 20px 40px rgba(189, 178, 255, 0.3);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        /* Apple-inspired Motion Effects */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glowing accents */
+        .glow-accent {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFD6E0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #BDB2FF;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9B8CFF;
+        }
+
+        /* Accordion transition */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+        }
+        .faq-answer.active {
+            max-height: 1000px;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        .keyword-link {
+            color: #6C5CE7;
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            transition: all 0.2s ease;
+        }
+        .keyword-link:hover {
+            color: #4834DF;
+            background: rgba(189, 178, 255, 0.25);
+            border-radius: 4px;
+            padding: 0 4px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-pastelPurple selection:text-white">
+
+    <!-- Ambient Glowing Background Bubbles -->
+    <div class="glow-accent w-[500px] h-[500px] bg-pastelPurple top-[-100px] left-[-100px] opacity-60"></div>
+    <div class="glow-accent w-[600px] h-[600px] bg-pastelPink bottom-10 right-[-100px] opacity-70"></div>
+    <div class="glow-accent w-[400px] h-[400px] bg-purple-200 top-[40%] left-[30%] opacity-40"></div>
+
+    <!-- Floating Glass Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="#home" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-pastelPurple to-purple-300 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+                    <i class="fa-solid font-bold fa-eye text-lg"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-800">Winchester<span class="text-purple-600 font-normal">Eye</span></span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-1 glass-panel px-4 py-1.5 rounded-full shadow-sm">
+                <a href="#home" class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-purple-700 rounded-full hover:bg-white/60 transition">Home</a>
+                <a href="#about" class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-purple-700 rounded-full hover:bg-white/60 transition">About</a>
+                <a href="#services" class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-purple-700 rounded-full hover:bg-white/60 transition">Services</a>
+                <a href="#blog" class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-purple-700 rounded-full hover:bg-white/60 transition">Guide & Blog</a>
+                <a href="#faqs" class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-purple-700 rounded-full hover:bg-white/60 transition">FAQs</a>
+            </nav>
+
+            <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-slate-800 bg-white/90 hover:bg-pastelPurple hover:text-white rounded-full shadow-sm transition-all transform hover:scale-105 duration-200">
+                Book Consultation
+            </a>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-700 focus:outline-none p-2 rounded-lg">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-4 pb-6 glass-panel mt-2 mx-4 rounded-3xl shadow-xl flex flex-col space-y-3">
+            <a href="#home" class="mobile-link text-slate-700 hover:text-purple-700 font-medium py-2 border-b border-purple-100">Home</a>
+            <a href="#about" class="mobile-link text-slate-700 hover:text-purple-700 font-medium py-2 border-b border-purple-100">About</a>
+            <a href="#services" class="mobile-link text-slate-700 hover:text-purple-700 font-medium py-2 border-b border-purple-100">Services</a>
+            <a href="#blog" class="mobile-link text-slate-700 hover:text-purple-700 font-medium py-2 border-b border-purple-100">Blog & Guide</a>
+            <a href="#faqs" class="mobile-link text-slate-700 hover:text-purple-700 font-medium py-2 border-b border-purple-100">FAQs</a>
+            <a href="#contact" class="mobile-link text-center px-5 py-2.5 text-sm font-semibold text-white bg-purple-600 rounded-full shadow-sm">Contact Us</a>
+        </div>
+    </header>
+
+    <main class="mt-24">
+        <!-- HERO SECTION -->
+        <section id="home" class="min-h-[88vh] flex items-center justify-center px-6 py-12 relative">
+            <div class="max-w-5xl mx-auto text-center fade-in-up">
+                <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-panel text-xs md:text-sm font-medium text-purple-900 mb-6 border border-white/80 shadow-sm">
+                    <span class="flex h-2 w-2 rounded-full bg-purple-500 animate-ping"></span>
+                    <span>Premier Ophthalmic Care in Hampshire</span>
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 tracking-tight leading-tight mb-8">
+                    Rediscover Crystal Clear Vision in <span class="bg-gradient-to-r from-purple-700 via-indigo-600 to-purple-500 bg-clip-text text-transparent">Winchester</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-slate-700 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
+                    Experience world-class eye care tailored to your unique lifestyle. Precision cataract surgery and customized lens solutions designed for visual freedom and lifelong clarity.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#blog" class="w-full sm:w-auto px-8 py-4 text-base font-semibold text-white bg-slate-900 hover:bg-purple-700 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                        Read Cataract Cost Guide
+                    </a>
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 text-base font-semibold text-slate-800 glass-card hover:bg-white rounded-full transition-all duration-300 transform hover:-translate-y-1">
+                        Request Consultation
+                    </a>
+                </div>
+
+                <!-- Feature Badges -->
+                <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                    <div class="glass-card p-4 rounded-2xl text-center">
+                        <i class="fa-solid fa-microscope text-2xl text-purple-600 mb-2"></i>
+                        <h4 class="font-semibold text-sm text-slate-800">Advanced Laser Tech</h4>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl text-center">
+                        <i class="fa-solid fa-user-doctor text-2xl text-purple-600 mb-2"></i>
+                        <h4 class="font-semibold text-sm text-slate-800">Expert Surgeons</h4>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl text-center">
+                        <i class="fa-solid fa-eye text-2xl text-purple-600 mb-2"></i>
+                        <h4 class="font-semibold text-sm text-slate-800">Premium Lenses</h4>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl text-center">
+                        <i class="fa-solid fa-heart-pulse text-2xl text-purple-600 mb-2"></i>
+                        <h4 class="font-semibold text-sm text-slate-800">Tailored Aftercare</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-20 px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 fade-in-up">
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-purple-800 mb-2">About Our Practice</h2>
+                    <h3 class="text-3xl md:text-5xl font-bold text-slate-900">Dedicated to Preserving Your Vision</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="glass-card p-8 rounded-3xl fade-in-up">
+                        <div class="w-12 h-12 bg-pastelPurple/40 rounded-2xl flex items-center justify-center text-purple-800 text-xl font-bold mb-6">
+                            01
+                        </div>
+                        <h4 class="text-2xl font-bold text-slate-900 mb-4">Patient-Centric Ophthalmic Excellence</h4>
+                        <p class="text-slate-700 leading-relaxed mb-4">
+                            Located in the heart of Hampshire, our clinic combines cutting-edge optical diagnostic technology with compassionate, individualized patient care. We recognize that sight is your most precious sense.
+                        </p>
+                        <p class="text-slate-700 leading-relaxed">
+                            From your initial comprehensive consultation through to post-operative recovery, every step of your surgical journey is meticulously planned to yield optimal visual outcomes.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-3xl fade-in-up">
+                        <div class="w-12 h-12 bg-pastelPink/80 rounded-2xl flex items-center justify-center text-purple-800 text-xl font-bold mb-6">
+                            02
+                        </div>
+                        <h4 class="text-2xl font-bold text-slate-900 mb-4">Pioneering Surgical Precision</h4>
+                        <p class="text-slate-700 leading-relaxed mb-4">
+                            We utilize state-of-the-art micro-incisional phacoemulsification and customizable intraocular lenses (IOLs) to restore visual independence.
+                        </p>
+                        <ul class="space-y-3 text-slate-700">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-purple-600 mr-3"></i> Bespoke treatment plans tailored to your lifestyle</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-purple-600 mr-3"></i> Comprehensive screening for macular and corneal health</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-purple-600 mr-3"></i> Direct access to consultant-led care</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="py-20 px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 fade-in-up">
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-purple-800 mb-2">Our Clinical Services</h2>
+                    <h3 class="text-3xl md:text-5xl font-bold text-slate-900">Comprehensive Eye Care Solutions</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="glass-card p-8 rounded-3xl fade-in-up flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-700 text-2xl mb-6">
+                                <i class="fa-solid fa-eye-slash"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-slate-900 mb-3">Modern Cataract Surgery</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                                Micro-incision procedure replacing clouding natural lenses with high-performance artificial intraocular lenses (IOLs) for optimal visual clarity.
+                            </p>
+                        </div>
+                        <a href="#blog" class="inline-flex items-center text-sm font-semibold text-purple-700 hover:text-purple-900">
+                            Learn more about costs & options <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="glass-card p-8 rounded-3xl fade-in-up flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center text-purple-700 text-2xl mb-6">
+                                <i class="fa-solid fa-glasses"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-slate-900 mb-3">Premium Lens Replacement</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                                Advanced multifocal, trifocal, and astigmatism-correcting toric lenses engineered to reduce or eliminate your dependency on reading glasses.
+                            </p>
+                        </div>
+                        <a href="#contact" class="inline-flex items-center text-sm font-semibold text-purple-700 hover:text-purple-900">
+                            Book lens assessment <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="glass-card p-8 rounded-3xl fade-in-up flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center text-purple-700 text-2xl mb-6">
+                                <i class="fa-solid fa-stethoscope"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-slate-900 mb-3">Retinal & Ophthalmic Care</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                                Detailed diagnostic evaluations for age-related macular degeneration (AMD), diabetic retinopathy, and general corneal eye health.
+                            </p>
+                        </div>
+                        <a href="#contact" class="inline-flex items-center text-sm font-semibold text-purple-700 hover:text-purple-900">
+                            Schedule consultation <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DETAILED BLOG SECTION (>1200 WORDS) -->
+        <section id="blog" class="py-20 px-6">
+            <div class="max-w-4xl mx-auto">
+                <article class="glass-panel p-8 md:p-14 rounded-[40px] shadow-glass">
+                    
+                    <!-- Blog Header -->
+                    <header class="mb-12 text-center border-b border-purple-200/60 pb-10">
+                        <div class="inline-block px-4 py-1.5 bg-pastelPurple/30 text-purple-900 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
+                            Comprehensive Patient Guide
+                        </div>
+                        <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+                            Understanding Cataract Surgery Costs in Winchester
+                        </h1>
+                        <div class="flex items-center justify-center space-x-6 text-sm text-slate-600">
+                            <span><i class="fa-regular fa-calendar mr-2"></i>Updated Educational Guide</span>
+                            <span><i class="fa-regular fa-clock mr-2"></i>8 Min Read</span>
+                        </div>
+                    </header>
+
+                    <!-- Blog Body Content -->
+                    <div class="prose prose-lg max-w-none text-slate-700 leading-relaxed space-y-8">
+                        
+                        <!-- Introduction Section -->
+                        <div class="space-y-4">
+                            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 border-l-4 border-pastelPurple pl-4">
+                                Introduction to Cataracts & Modern Ophthalmic Care in Hampshire
+                            </h2>
+                            <p>
+                                Maintaining clear, uninterrupted vision is essential for enjoying everything that Winchester and the surrounding Hampshire countryside have to offer. Whether you are navigating historic streets, enjoying outdoor walks, or simply reading a book at home, compromised eyesight can significantly alter your day-to-day quality of life. Among the most common causes of gradual vision loss in adults over the age of 50 is the formation of cataracts. 
+                            </p>
+                            <p>
+                                A cataract occurs when the natural, normally crystal-clear lens located inside your eye becomes cloudy. Over time, this clouding prevents light rays from passing cleanly through the lens to the retina, resulting in blurred, dim, or distorted vision. Fortunately, modern medical technology has transformed cataract treatment into one of the safest, most reliable, and most frequently performed surgical procedures globally.
+                            </p>
+                            <p>
+                                If you or a loved one are exploring options for vision restoration, understanding the financial investment, surgical choices, and clinical outcomes involved is crucial. When evaluating <a href="https://drbhaskargupta.co.uk/cataract-surgery/winchester/" class="keyword-link">Cataract Surgery in Winchester</a>, patients often find themselves navigating complex decisions surrounding public healthcare pathways versus private self-pay options, premium lens selection, and surgeon expertise. This comprehensive guide provides a detailed breakdown of everything you need to know about cataract procedure costs, what those costs entail, and how to make the best decision for your optical health.
+                            </p>
+                        </div>
+
+                        <!-- Section: What is Cataract Surgery -->
+                        <div class="space-y-4 pt-6">
+                            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 border-l-4 border-pastelPurple pl-4">
+                                What is Cataract Surgery and How Does it Work?
+                            </h2>
+                            <p>
+                                To better understand the financial investment associated with eye surgery, it is helpful first to understand the underlying clinical procedure. Cataract surgery is an outpatient procedure designed to remove your eye’s natural, clouded lens and replace it with a permanent, artificial clear lens known as an Intraocular Lens (IOL).
+                            </p>
+                            
+                            <h3 class="text-xl font-bold text-slate-800 pt-2">The Surgical Process Step-by-Step:</h3>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li><strong>Local Anaesthesia & Comfort:</strong> Before the procedure begins, the eye is completely numbed using advanced topical anaesthetic drops. Patients remain awake and comfortable throughout the entire experience without feeling pain.</li>
+                                <li><strong>Micro-Incision Phacoemulsification:</strong> The surgeon makes a tiny, self-sealing micro-incision (typically under 2.5 millimeters) at the edge of the cornea. Using high-frequency ultrasound energy, the cloudy natural lens is gently broken down into minute fragments and carefully vacuumed away.</li>
+                                <li><strong>IOL Implantation:</strong> Through the same tiny incision, a flexible, medical-grade artificial lens is inserted and unfolded gently into position inside the natural lens capsule.</li>
+                                <li><strong>Rapid Recovery:</strong> Because the incision is extraordinarily small and precise, it naturally seals itself without the need for traditional stitches. Most procedures are completed within 15 to 20 minutes, allowing patients to return home the very same day.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Section: Key Factors Influencing Costs -->
+                        <div class="space-y-4 pt-6">
+                            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 border-l-4 border-pastelPurple pl-4">
+                                Key Factors Influencing Cataract Surgery Costs in Winchester
+                            </h2>
+                            <p>
+                                The overall cost of undergoing cataract surgery in Winchester can vary widely depending on the pathway you select and the specific clinical technology utilized. Understanding these factors will help you compare options accurately.
+                            </p>
+
+                            <h3 class="text-xl font-bold text-slate-800 pt-2">1. NHS Treatment vs. Private Care Pathways</h3>
+                            <p>
+                                In the UK, patients have the choice between receiving care through the NHS or opting for private ophthalmic care:
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+                                <div class="bg-white/70 p-5 rounded-2xl border border-purple-100">
+                                    <h4 class="font-bold text-purple-900 mb-2">NHS Cataract Care</h4>
+                                    <p class="text-sm text-slate-600">
+                                        Free at the point of care for qualifying patients. However, wait times can range from several months to over a year. Additionally, NHS care standardly offers basic monofocal lenses, meaning glasses will usually still be required for reading or intermediate vision.
+                                    </p>
+                                </div>
+                                <div class="bg-white/70 p-5 rounded-2xl border border-purple-100">
+                                    <h4 class="font-bold text-purple-900 mb-2">Private Cataract Surgery</h4>
+                                    <p class="text-sm text-slate-600">
+                                        Allows patients to bypass long waiting lists, choose their exact consultant surgeon, select appointment times, and access advanced premium intraocular lenses tailored to eliminate dependence on glasses.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <h3 class="text-xl font-bold text-slate-800 pt-2">2. Type of Intraocular Lens (IOL) Selected</h3>
+                            <p>
+                                The single largest financial variable in private cataract treatment is the type of lens implant chosen. Lenses are engineered to address different visual requirements:
+                            </p>
+                            <ul class="list-disc pl-6 space-y-3">
+                                <li>
+                                    <strong>Standard Monofocal Lenses:</strong> Designed to provide sharp focus at one fixed distance (usually distance vision). While excellent for clarity, patients will still require glasses for reading, computer work, or close tasks. This is the most economical lens option.
+                                </li>
+                                <li>
+                                    <strong>Multifocal & Trifocal Lenses:</strong> Premium optical implants that split light into multiple focal points, giving clear visual acuity across near, intermediate, and distance ranges. These significantly decrease or entirely eliminate the need for spectacle wear.
+                                </li>
+                                <li>
+                                    <strong>Toric Lenses:</strong> Specially customized lenses designed to correct astigmatism (irregular corneal curvature). Toric models are available in both monofocal and multifocal configurations.
+                                </li>
+                                <li>
+                                    <strong>Extended Depth of Focus (EDOF) Lenses:</strong> Advanced technology offering a continuous elongated field of clear vision from distance through to intermediate range with reduced glare or halo effects during night driving.
+                                </li>
+                            </ul>
+
+                            <h3 class="text-xl font-bold text-slate-800 pt-2">3. Surgical Technology & Laser Assistance</h3>
+                            <p>
+                                Traditional phacoemulsification relies on precise manual techniques by a skilled specialist. Some private clinics in Winchester also offer femtosecond laser-assisted cataract surgery (FLACS), which automates corneal incisions and lens fragmentation. While laser-assisted methods offer enhanced mathematical precision, they typically incur additional equipment fees.
+                            </p>
+
+                            <h3 class="text-xl font-bold text-slate-800 pt-2">4. Consultant Surgeon Expertise & Dedicated Facility Fees</h3>
+                            <p>
+                                Choosing an experienced Consultant Ophthalmologist who specializes in complex cataract and retinal procedures ensures your eyes receive top-tier diagnostic care. Surgical fees reflect the doctor's specialized qualifications, clinical track record, hospital facility usage, state-of-the-art sterile operating theater access, and dedicated nursing support.
+                            </p>
+                        </div>
+
+                        <!-- Section: Breakdown of Financial Investment -->
+                        <div class="space-y-4 pt-6">
+                            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 border-l-4 border-pastelPurple pl-4">
+                                Breakdown of Financial Investment & What Is Included
+                            </h2>
+                            <p>
+                                When comparing quotes for private eye surgery, it is essential to ensure you are viewing "all-inclusive" pricing packages rather than partial estimates that exclude pre- or post-operative care.
+                            </p>
+
+                            <div class="overflow-x-auto my-6">
+                                <table class="w-full text-left border-collapse glass-card rounded-2xl overflow-hidden">
+                                    <thead>
+                                        <tr class="bg-purple-200/50 text-slate-900">
+                                            <th class="p-4 font-bold">Treatment Package Component</th>
+                                            <th class="p-4 font-bold">Standard Monofocal IOL</th>
+                                            <th class="p-4 font-bold">Premium (Multifocal / Toric IOL)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-purple-100 text-sm">
+                                        <tr>
+                                            <td class="p-4 font-semibold">Initial Ophthalmic Consultation & Diagnostics</td>
+                                            <td class="p-4 text-slate-600">Included / Separate Assessment Fee</td>
+                                            <td class="p-4 text-slate-600">Comprehensive Biometry & Mapping Included</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-4 font-semibold">Surgeon & Anaesthetist Fees</td>
+                                            <td class="p-4 text-slate-600">Fully Covered</td>
+                                            <td class="p-4 text-slate-600">Fully Covered</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-4 font-semibold">Hospital / Surgical Suite Use</td>
+                                            <td class="p-4 text-slate-600">Day Surgery Unit Included</td>
+                                            <td class="p-4 text-slate-600">Day Surgery Unit Included</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-4 font-semibold">Post-Operative Eye Drops & Medications</td>
+                                            <td class="p-4 text-slate-600">Provided at discharge</td>
+                                            <td class="p-4 text-slate-600">Provided at discharge</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-4 font-semibold">Follow-Up Consultations</td>
+                                            <td class="p-4 text-slate-600">Standard 4-6 week checkup</td>
+                                            <td class="p-4 text-slate-600">Extended 3-month care package</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="text-sm text-slate-600 italic">
+                                *Note: Typical private cataract surgery costs in Hampshire generally range between £2,300 to £3,800 per eye depending on the specific lens technology selected and surgeon credentials.
+                            </p>
+                        </div>
+
+                        <!-- Section: Benefits of Timely Surgery -->
+                        <div class="space-y-4 pt-6">
+                            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 border-l-4 border-pastelPurple pl-4">
+                                Benefits of Timely Cataract Surgery for Quality of Life
+                            </h2>
+                            <p>
+                                Delaying cataract treatment can lead to progressive visual loss, making everyday tasks like driving at night, reading fine print, or recognizing faces increasingly challenging. Opting for timely intervention provides significant long-term benefits:
+                            </p>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li><strong>Enhanced Visual Vibrancy:</strong> Colors appear significantly brighter, clearer, and more true-to-life once the yellowed natural lens is replaced.</li>
+                                <li><strong>Increased Night Driving Safety:</strong> Reduces uncomfortable glares, halos around headlights, and poor contrast sensitivity during low-light conditions.</li>
+                                <li><strong>Greater Independence:</strong> Choosing advanced multifocal lenses can eliminate your reliance on bifocals or reading glasses.</li>
+                                <li><strong>Reduced Risk of Falls:</strong> Improved depth perception and spatial awareness substantially lower the risk of trips and falls in older adults.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Section: Insurance and Payment Options -->
+                        <div class="space-y-4 pt-6">
+                            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 border-l-4 border-pastelPurple pl-4">
+                                Navigating Private Medical Insurance & Self-Pay Options in Winchester
+                            </h2>
+                            <p>
+                                If you hold private health insurance (such as Bupa, AXA Health, Aviva, or Vitality), cataract surgery is almost universally recognized as an essential medical procedure. Most insurers cover the standard surgical costs and standard monofocal lens placement in full. If you desire a premium multifocal or toric lens upgrade, many policies allow you to pay the marginal difference directly.
+                            </p>
+                            <p>
+                                For self-funding patients, modern private clinics offer flexible payment plans, allowing patients to spread the total investment over monthly interest-free instalments. This makes accessing immediate high-quality surgical care both manageable and affordable.
+                            </p>
+                        </div>
+
+                        <!-- EXPERT INSIGHT SECTION -->
+                        <div class="mt-12 bg-gradient-to-br from-purple-100/80 via-white/90 to-pink-100/80 p-8 rounded-3xl border border-purple-200 shadow-md">
+                            <div class="flex items-center space-x-4 mb-4">
+                                <div class="w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-md">
+                                    <i class="fa-solid fa-user-doctor"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-900">Dr. Bhaskar Gupta - Consultant Ophthalmologist & Retina-Cataract Specialist says:</h3>
+                                    <p class="text-xs text-purple-800 font-semibold uppercase tracking-wider">Expert Clinical Advice & Tips</p>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4 text-slate-700 text-sm md:text-base leading-relaxed pl-2 border-l-2 border-purple-400">
+                                <p class="italic font-medium">
+                                    "When considering cataract surgery, my highest priority is helping patients understand that vision correction should be personalized to their daily lifestyle demands."
+                                </p>
+                                <div class="space-y-2">
+                                    <p><strong>1. Pre-Operative Lens Selection:</strong> "Don't just look at the price tag—consider how you spend your day. If you drive frequently at night, read extensively, or enjoy golf, express these habits during your biometry consultation. Modern lens technology allows us to customize your focal outcome specifically for your hobbies."</p>
+                                    <p><strong>2. Prepare Your Home Environment:</strong> "Before surgery day, ensure your home is free of tripping hazards, stock up on clean paper towels for eye hygiene, and keep your prescribed antibiotic and anti-inflammatory eye drops in an easily accessible location."</p>
+                                    <p><strong>3. Post-Surgery Recovery Protection:</strong> "The most critical period for surgical healing is the first 7 to 10 days. Avoid rubbing your eyes, wear your protective eye shield while sleeping during the first week, and strictly refrain from heavy lifting or swimming until cleared at your post-op review."</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- FAQS SECTION -->
+        <section id="faqs" class="py-20 px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16 fade-in-up">
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-purple-800 mb-2">Got Questions?</h2>
+                    <h3 class="text-3xl md:text-5xl font-bold text-slate-900">Frequently Asked Questions</h3>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- FAQ Item 1 -->
+                    <div class="glass-card rounded-2xl p-6 cursor-pointer faq-item" onclick="toggleFaq(this)">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-lg text-slate-900">Is cataract surgery painful?</h4>
+                            <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-700 transition-transform duration-300 icon">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="faq-answer mt-3 text-slate-600 text-sm leading-relaxed">
+                            No, cataract surgery is virtually painless. Local anaesthetic eye drops completely numb the eye prior to the procedure. Patients might feel a mild sensation of pressure or water, but no sharp discomfort. Mild gritty sensations after surgery can be easily managed with prescribed drops.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="glass-card rounded-2xl p-6 cursor-pointer faq-item" onclick="toggleFaq(this)">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-lg text-slate-900">How long does recovery take after cataract surgery?</h4>
+                            <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-700 transition-transform duration-300 icon">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="faq-answer mt-3 text-slate-600 text-sm leading-relaxed">
+                            Most patients notice significant improvements in visual clarity within 24 to 48 hours following surgery. Full healing usually takes approximately 4 to 6 weeks. You will be given antibiotic and anti-inflammatory eye drops to assist the healing process during this time.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="glass-card rounded-2xl p-6 cursor-pointer faq-item" onclick="toggleFaq(this)">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-lg text-slate-900">Can cataracts come back after surgery?</h4>
+                            <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-700 transition-transform duration-300 icon">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="faq-answer mt-3 text-slate-600 text-sm leading-relaxed">
+                            No, a cataract cannot return because your natural lens has been permanently removed. However, months or years later, some patients develop a common, minor condition called Posterior Capsule Opacification (PCO), where the natural capsule holding the new lens becomes hazy. This is easily treated in minutes with a quick, painless YAG laser procedure.
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="glass-card rounded-2xl p-6 cursor-pointer faq-item" onclick="toggleFaq(this)">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-lg text-slate-900">Will I still need glasses after cataract surgery?</h4>
+                            <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-700 transition-transform duration-300 icon">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="faq-answer mt-3 text-slate-600 text-sm leading-relaxed">
+                            That depends on the type of intraocular lens (IOL) you select. Standard monofocal lenses usually provide clear distance vision, but reading glasses will still be needed. Choosing premium multifocal or Extended Depth of Focus (EDOF) lenses can minimize or eliminate your dependence on glasses altogether.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION (CUSTOMER FORM ONLY - NO BUSINESS DETAILS) -->
+        <section id="contact" class="py-20 px-6">
+            <div class="max-w-3xl mx-auto">
+                <div class="glass-panel p-8 md:p-12 rounded-[36px] shadow-glass fade-in-up">
+                    <div class="text-center mb-10">
+                        <span class="px-4 py-1.5 bg-purple-200/50 text-purple-900 rounded-full text-xs font-semibold uppercase tracking-wider">Get In Touch</span>
+                        <h3 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-3">Request Information or Appointment</h3>
+                        <p class="text-slate-600 text-sm mt-2">Fill out your contact details below and our clinical coordination team will get in touch with you promptly.</p>
+                    </div>
+
+                    <!-- Interactive Form -->
+                    <form id="patient-contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="fullName" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Full Name *</label>
+                                <input type="text" id="fullName" required placeholder="John Doe" class="w-full px-5 py-3.5 rounded-2xl bg-white/80 border border-purple-200/80 focus:border-purple-500 focus:bg-white focus:outline-none transition shadow-sm text-slate-800 text-sm">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Email Address *</label>
+                                <input type="email" id="email" required placeholder="john@example.com" class="w-full px-5 py-3.5 rounded-2xl bg-white/80 border border-purple-200/80 focus:border-purple-500 focus:bg-white focus:outline-none transition shadow-sm text-slate-800 text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="phone" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Phone Number *</label>
+                            <input type="tel" id="phone" required placeholder="07123 456789" class="w-full px-5 py-3.5 rounded-2xl bg-white/80 border border-purple-200/80 focus:border-purple-500 focus:bg-white focus:outline-none transition shadow-sm text-slate-800 text-sm">
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Your Message / Enquiry *</label>
+                            <textarea id="message" rows="4" required placeholder="Please write details about your enquiry or preferred consultation times..." class="w-full px-5 py-3.5 rounded-2xl bg-white/80 border border-purple-200/80 focus:border-purple-500 focus:bg-white focus:outline-none transition shadow-sm text-slate-800 text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" id="submit-btn" class="w-full py-4 px-8 text-base font-bold text-white bg-slate-900 hover:bg-purple-700 rounded-2xl shadow-lg hover:shadow-purple-300 transition-all duration-300 transform hover:-translate-y-0.5">
+                            Submit Request
+                        </button>
+                    </form>
+
+                    <!-- Success Message Box (Hidden by default) -->
+                    <div id="success-box" class="hidden text-center py-8 space-y-4">
+                        <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto text-3xl shadow-sm">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-slate-900">Message Sent Successfully!</h4>
+                        <p class="text-slate-600 text-sm max-w-md mx-auto">
+                            Thank you for submitting your enquiry. Our patient care team has received your information and will respond to you directly via phone or email shortly.
+                        </p>
+                        <button onclick="resetForm()" class="mt-4 px-6 py-2.5 text-xs font-semibold text-purple-700 bg-purple-100 hover:bg-purple-200 rounded-full transition">
+                            Send Another Message
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-10 px-6 border-t border-purple-200/50 glass-nav">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+            <div class="flex items-center space-x-2">
+                <div class="w-6 h-6 rounded-lg bg-purple-600 flex items-center justify-center text-white text-xs">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <span class="font-bold text-slate-800">Winchester Eye Care</span>
+            </div>
+
+            <p>© 2026 Winchester Vision & Ophthalmic Information Guide. All rights reserved.</p>
+
+            <div class="flex space-x-4">
+                <a href="#home" class="hover:text-purple-700 transition">Back to top <i class="fa-solid fa-arrow-up ml-1"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Mobile Menu Toggle Logic
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // FAQ Accordion Toggle Function
+        function toggleFaq(element) {
+            const answer = element.querySelector('.faq-answer');
+            const icon = element.querySelector('.icon');
+            
+            const isActive = answer.classList.contains('active');
+            
+            // Close all active accordions
+            document.querySelectorAll('.faq-answer').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.faq-item .icon').forEach(el => el.style.transform = 'rotate(0deg)');
+            
+            if (!isActive) {
+                answer.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Form Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const btn = document.getElementById('submit-btn');
+            btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin mr-2"></i> Submitting...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('patient-contact-form').classList.add('hidden');
+                document.getElementById('success-box').classList.remove('hidden');
+            }, 1000);
+        }
+
+        function resetForm() {
+            document.getElementById('patient-contact-form').reset();
+            document.getElementById('patient-contact-form').classList.remove('hidden');
+            document.getElementById('success-box').classList.add('hidden');
+            const btn = document.getElementById('submit-btn');
+            btn.innerHTML = 'Submit Request';
+            btn.disabled = false;
+        }
+
+        // Apple-style Scroll Reveal Animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.fade-in-up');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
